@@ -1,0 +1,274 @@
+/* Base styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar styles */
+.sidebar {
+    min-height: 100vh;
+    background-color: #343a40;
+    padding-top: 20px;
+    position: sticky;
+    top: 0;
+}
+
+.sidebar .nav-link {
+    color: #f8f9fa;
+    margin-bottom: 10px;
+    transition: all 0.3s;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+}
+
+.sidebar .logout {
+    color: #dc3545;
+    margin-top: 50px;
+}
+
+.profile-section {
+    padding: 15px 0;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Main content area */
+.main-content {
+    background-color: #f8f9fa;
+}
+
+/* Cards styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 20px;
+    border-radius: 12px 12px 0 0 !important;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Header card */
+.header-card {
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.current-date {
+    color: #6c757d;
+    margin: 0;
+}
+
+/* Task list styling */
+.task-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.2s;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item:hover {
+    background-color: #f8f9fa;
+}
+
+.task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task-details {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-left: 25px;
+    font-size: 0.85rem;
+}
+
+.form-check-input:checked + .form-check-label {
+    text-decoration: line-through;
+    color: #6c757d;
+}
+
+/* Weekly activity stats */
+.activity-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+}
+
+.stat-item h3 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #007bff;
+}
+
+.stat-item p {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Bar graph */
+.bar-graph-container {
+    margin-top: 15px;
+}
+
+.bar-graph {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 150px;
+    margin-top: 15px;
+}
+
+.bar-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.bar-value {
+    width: 80%;
+    background-color: #007bff;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s;
+}
+
+.bar-value:hover {
+    background-color: #0069d9;
+}
+
+.bar-label {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* Recommendations section */
+.recommendations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recommendation-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #007bff;
+}
+
+.recommendation-icon {
+    font-size: 1.5rem;
+    color: #007bff;
+    padding-top: 5px;
+}
+
+.recommendation-content h6 {
+    margin-bottom: 5px;
+    color: #343a40;
+}
+
+.recommendation-content p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Modal customization */
+.modal-content {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    border-bottom: 1px solid #f0f0f0;
+    padding: 15px 20px;
+}
+
+.modal-footer {
+    border-top: 1px solid #f0f0f0;
+    padding: 15px 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        min-height: auto;
+        position: static;
+    }
+    
+    .task-content {
+        flex-direction: column;
+    }
+    
+    .task-details {
+        margin-left: 0;
+        flex-wrap: wrap;
+    }
+    
+    .activity-stats {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .stat-item {
+        padding: 5px;
+    }
+    
+    .bar-graph {
+        height: 120px;
+    }
+}

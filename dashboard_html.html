@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Scheduler Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="dashboard_css.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-2 sidebar p-0">
+                <div class="d-flex flex-column">
+                    <div class="app-brand p-3 text-center">
+                        <h4 class="text-white">MyScheduler</h4>
+                    </div>
+                    <div class="profile-section text-center mb-4">
+                        <div class="avatar-container">
+                            <img src="/api/placeholder/80/80" alt="Profile" class="rounded-circle profile-avatar">
+                        </div>
+                        <h6 class="text-white mt-2">Welcome, User</h6>
+                    </div>
+                    <ul class="nav flex-column px-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">
+                                <i class="fas fa-home me-2"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-user me-2"></i> Profile
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fas fa-lightbulb me-2"></i> Recommendations
+                            </a>
+                        </li>
+                        <li class="nav-item mt-auto">
+                            <a class="nav-link logout" href="#">
+                                <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="col-md-10 main-content p-4">
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <div class="header-card">
+                            <h2>Dashboard</h2>
+                            <p class="current-date">Wednesday, March 19, 2025</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Today's Tasks Section -->
+                    <div class="col-md-7 mb-4">
+                        <div class="card task-card">
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Today's Tasks</h5>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+                                    <i class="fas fa-plus me-1"></i> Add Task
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <ul class="task-list">
+                                    <li class="task-item">
+                                        <div class="task-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="task1">
+                                                <label class="form-check-label" for="task1">Complete project proposal</label>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="badge bg-danger">High</span>
+                                                <span class="time"><i class="far fa-clock me-1"></i>60 mins</span>
+                                                <span class="deadline"><i class="far fa-calendar me-1"></i>Today</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="task-item">
+                                        <div class="task-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="task2">
+                                                <label class="form-check-label" for="task2">Review presentation slides</label>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="badge bg-warning">Medium</span>
+                                                <span class="time"><i class="far fa-clock me-1"></i>30 mins</span>
+                                                <span class="deadline"><i class="far fa-calendar me-1"></i>Today</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="task-item">
+                                        <div class="task-content">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="task3">
+                                                <label class="form-check-label" for="task3">Schedule team meeting</label>
+                                            </div>
+                                            <div class="task-details">
+                                                <span class="badge bg-success">Low</span>
+                                                <span class="time"><i class="far fa-clock me-1"></i>15 mins</span>
+                                                <span class="deadline"><i class="far fa-calendar me-1"></i>Today</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Activity and Bar Graph Section -->
+                    <div class="col-md-5 mb-4">
+                        <div class="card activity-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Weekly Activity</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-stats">
+                                    <div class="stat-item">
+                                        <h3>12</h3>
+                                        <p>Tasks Completed</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <h3>85%</h3>
+                                        <p>Productivity</p>
+                                    </div>
+                                    <div class="stat-item">
+                                        <h3>5</h3>
+                                        <p>Streak Days</p>
+                                    </div>
+                                </div>
+
+                                <div class="bar-graph-container mt-4">
+                                    <h6>Daily Task Completion</h6>
+                                    <div class="bar-graph">
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 70%;"></div>
+                                            <div class="bar-label">Mon</div>
+                                        </div>
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 85%;"></div>
+                                            <div class="bar-label">Tue</div>
+                                        </div>
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 55%;"></div>
+                                            <div class="bar-label">Wed</div>
+                                        </div>
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 90%;"></div>
+                                            <div class="bar-label">Thu</div>
+                                        </div>
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 65%;"></div>
+                                            <div class="bar-label">Fri</div>
+                                        </div>
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 40%;"></div>
+                                            <div class="bar-label">Sat</div>
+                                        </div>
+                                        <div class="bar-item">
+                                            <div class="bar-value" style="height: 30%;"></div>
+                                            <div class="bar-label">Sun</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Section -->
+                <div class="row">
+                    <div class="col-12 mb-4">
+                        <div class="card recommendations-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">Recommendations</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="recommendations-list">
+                                    <div class="recommendation-item">
+                                        <i class="fas fa-lightbulb recommendation-icon"></i>
+                                        <div class="recommendation-content">
+                                            <h6>Schedule breaks between long tasks</h6>
+                                            <p>Taking short breaks can improve focus and productivity by 20%.</p>
+                                        </div>
+                                    </div>
+                                    <div class="recommendation-item">
+                                        <i class="fas fa-sun recommendation-icon"></i>
+                                        <div class="recommendation-content">
+                                            <h6>Try tackling difficult tasks in the morning</h6>
+                                            <p>Your energy levels are highest in the morning, perfect for complex tasks.</p>
+                                        </div>
+                                    </div>
+                                    <div class="recommendation-item">
+                                        <i class="fas fa-chart-line recommendation-icon"></i>
+                                        <div class="recommendation-content">
+                                            <h6>Group similar tasks together</h6>
+                                            <p>Task batching can reduce context switching and improve efficiency.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" aria-labelledby="addTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Add New Task</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="taskForm">
+                        <div class="mb-3">
+                            <label for="taskName" class="form-label">Task Name</label>
+                            <input type="text" class="form-control" id="taskName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="estimatedTime" class="form-label">Estimated Time (minutes)</label>
+                            <input type="number" class="form-control" id="estimatedTime" min="1" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="deadline" class="form-label">Deadline</label>
+                            <input type="date" class="form-control" id="deadline" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="priority" class="form-label">Priority</label>
+                            <select class="form-select" id="priority" required>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveTask">Save Task</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Display current date
+        const currentDate = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.querySelector('.current-date').textContent = currentDate.toLocaleDateString('en-US', options);
+
+        // Add task functionality
+        document.getElementById('saveTask').addEventListener('click', function() {
+            const taskName = document.getElementById('taskName').value;
+            const estimatedTime = document.getElementById('estimatedTime').value;
+            const deadline = document.getElementById('deadline').value;
+            const priority = document.getElementById('priority').value;
+            
+            if(taskName && estimatedTime && deadline && priority) {
+                // Create new task element
+                const taskList = document.querySelector('.task-list');
+                const taskItem = document.createElement('li');
+                taskItem.className = 'task-item';
+                
+                const priorityClass = 
+                    priority === 'high' ? 'bg-danger' : 
+                    priority === 'medium' ? 'bg-warning' : 'bg-success';
+                
+                const deadlineDate = new Date(deadline);
+                const deadlineText = deadlineDate.toDateString() === currentDate.toDateString() ? 
+                    'Today' : new Date(deadline).toLocaleDateString('en-US', {month: 'short', day: 'numeric'});
+                
+                taskItem.innerHTML = `
+                    <div class="task-content">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="task-new">
+                            <label class="form-check-label" for="task-new">${taskName}</label>
+                        </div>
+                        <div class="task-details">
+                            <span class="badge ${priorityClass}">${priority.charAt(0).toUpperCase() + priority.slice(1)}</span>
+                            <span class="time"><i class="far fa-clock me-1"></i>${estimatedTime} mins</span>
+                            <span class="deadline"><i class="far fa-calendar me-1"></i>${deadlineText}</span>
+                        </div>
+                    </div>
+                `;
+                
+                taskList.appendChild(taskItem);
+                
+                // Close modal and reset form
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addTaskModal'));
+                modal.hide();
+                document.getElementById('taskForm').reset();
+            }
+        });
+    </script>
+</body>
+</html>

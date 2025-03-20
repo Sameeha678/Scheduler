@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background-image: url('studytable.jpeg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-container {
+            width: 450px; /* Reduced width */
+            height: 280px; /* Maintained height */
+            padding: 25px; /* Adjusted padding */
+            background: rgba(255, 255, 255, 0.7); /* Slightly transparent */
+            border-radius: 10px;
+            box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.4); /* Adjusted shadow */
+            text-align: center;
+            position: relative;
+        }
+        .login-container h2 {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        input, button {
+            width: 90%; /* Adjusted width for spacing */
+            padding: 12px;
+            margin: 12px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: rgba(245, 245, 245, 1); /* Dark white for better visibility */
+        }
+        button {
+            background-color: #8B5A2B; /* Wood color theme */
+            color: white;
+            cursor: pointer;
+            border: none;
+            box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.5);
+        }
+        button:hover {
+            background-color: #A67B5B;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="#">Sign Up</a></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

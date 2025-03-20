@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Schedular</title>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="recommendations.css">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+            margin: 0;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2C3E50;
+            color: white;
+            position: fixed;
+            left: -250px;
+            top: 0;
+            transition: left 0.3s ease-in-out;
+            padding-top: 20px;
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #2980B9;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .sidebar ul li i {
+            margin-right: 15px;
+        }
+
+        .sidebar ul li.active {
+            background: rgba(255, 255, 255, 0.2); /* Transparent box effect */
+            border-radius: 5px;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            transition: margin-left 0.3s ease-in-out;
+            width: 100%;
+        }
+
+        .content-shift {
+            margin-left: 250px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .profile-card, .recommendations-section {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .recommendations-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .recommendation-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            width: calc(33.333% - 20px);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-btn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li onclick="navigateTo('dashboard.html')"><i class="fas fa-home"></i> <span>Home</span></li>
+            <li onclick="navigateTo('profile.html')"><i class="fas fa-user"></i> <span>Profile</span></li>
+            <li onclick="navigateTo('recommendations.html')"><i class="fas fa-lightbulb"></i> <span>Recommendations</span></li>
+            <li onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+        </ul>
+    </div>
+    
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <header id="home">
+                <h1>AI Skill Recommendations</h1>
+                <div class="divider"></div>
+                <p class="subtitle">Your personalized learning path</p>
+            </header>
+
+            <section class="profile-card" id="profile">
+                <div class="profile-header">
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-details">
+                        <h2 id="userName">Loading...</h2>
+                        <p class="profile-tagline">Weekly Growth Plan</p>
+                    </div>
+                </div>
+                
+                <div class="interests-section">
+                    <h3>Your Focus Areas</h3>
+                    <div class="interests-container" id="interestsContainer">
+                        <!-- Interests will be inserted here -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="recommendations-section" id="recommendations">
+                <h2 class="section-heading">Recommended Actions</h2>
+                <div class="recommendations-grid" id="recommendationsGrid">
+                    <!-- Recommendations will be inserted here -->
+                </div>
+            </section>
+            
+            <footer>
+                <p>© 2025 AI-Powered Skill Development</p>
+                <p class="footer-note">Updated every Monday</p>
+            </footer>
+        </div>
+    </div>
+    
+    <script>
+        const user = {
+            name: "Varsha Priyaini",
+            interests: ["Mathematics", "Problem-Solving", "Time Management"],
+            recommendations: [
+                { 
+                    category: "Mathematics", 
+                    action: "Practice 5 math problems daily focusing on algebra and calculus concepts", 
+                    priority: "High",
+                    icon: "fa-square-root-variable"
+                },
+                { 
+                    category: "Problem-Solving", 
+                    action: "Solve coding challenges on platforms like LeetCode or HackerRank", 
+                    priority: "Medium",
+                    icon: "fa-code"
+                },
+                { 
+                    category: "Time Management", 
+                    action: "Use a daily planner to track tasks and set priorities", 
+                    priority: "Low",
+                    icon: "fa-clock"
+                }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('userName').textContent = user.name;
+            
+            const interestsContainer = document.getElementById('interestsContainer');
+            user.interests.forEach(interest => {
+                const interestTag = document.createElement('span');
+                interestTag.className = 'interest-tag';
+                interestTag.textContent = interest;
+                interestsContainer.appendChild(interestTag);
+            });
+            
+            const recommendationsGrid = document.getElementById('recommendationsGrid');
+            user.recommendations.forEach(rec => {
+                const card = document.createElement('div');
+                card.className = 'recommendation-card';
+                
+                let priorityClass = '';
+                switch(rec.priority) {
+                    case 'High': priorityClass = 'priority-high'; break;
+                    case 'Medium': priorityClass = 'priority-medium'; break;
+                    case 'Low': priorityClass = 'priority-low'; break;
+                }
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <i class="fas ${rec.icon}"></i>
+                        </div>
+                        <h3 class="card-title">${rec.category}</h3>
+                    </div>
+                    <div class="card-content">
+                        <p>${rec.action}</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="priority-badge ${priorityClass}">
+                            <i class="fas fa-flag"></i> ${rec.priority} Priority
+                        </span>
+                    </div>
+                `;
+                
+                recommendationsGrid.appendChild(card);
+            });
+        });
+
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("open");
+        }
+
+        function navigateTo(page) {
+            window.location.href = page;
+        }
+
+        function logout() {
+            if (confirm("Are you sure you want to log out?")) {
+                alert("Logged out successfully!");
+            }
+        }
+    </script>
+</body>
+</html>
